@@ -1,0 +1,23 @@
+//font weights
+
+$font-weights: (
+  "regular": 400,
+  "semi_bold": 600,
+  "bold": 700,
+);
+
+@function fontWeight($weight) {
+  @return map-get($map: $font-weights, $key: $weight);
+}
+
+//font sizes
+
+$font-sizes: (
+  "large": 20px,
+  "medium": 18px,
+  "small": 16px,
+);
+
+@function fontSize($size) {
+  @return map-get($map: $font-sizes, $key: $size);
+}

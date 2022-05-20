@@ -1,0 +1,176 @@
+@use "./Style/abstract/maps.scss";
+@use "./Style/abstract/mixins.scss";
+@use "./Style/abstract/variables.scss";
+
+.app {
+  @include mixins.flex(row, center, center);
+}
+
+.sidebar {
+  @include mixins.flex(column, unset, unset);
+  border-right: 2px solid variables.$secondary-grey;
+  background-color: variables.$primary;
+  height: 100%;
+  width: 15%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+
+  &-logo {
+    @include mixins.flex(row, center, center);
+    @include mixins.text(
+      variables.$tertiary-grey,
+      maps.fontSize("large"),
+      maps.fontWeight("bold"),
+      unset,
+      unset
+    );
+    padding: 25px;
+    background-color: variables.$primary-grey;
+    border-radius: 15px 0 0 0;
+  }
+
+  &-menu {
+    padding: 0 15px;
+
+    &-list {
+      list-style-type: none;
+      padding-inline-start: unset;
+      margin-bottom: 40px;
+
+      &-title {
+        @include mixins.text(
+          variables.$tertiary-grey,
+          maps.fontSize("middle"),
+          maps.fontWeight("semi_bold"),
+          unset,
+          uppercase
+        );
+        border-bottom: 2px solid variables.$secondary-grey;
+        padding: 15px 0;
+      }
+
+      &-item {
+        @include mixins.flex(row, unset, center);
+        @include mixins.text(
+          variables.$quaternary-grey,
+          maps.fontSize("middle"),
+          maps.fontWeight("semi_bold"),
+          unset,
+          unset
+        );
+        margin: 15px 0;
+
+        &-icon {
+          @include mixins.flex(row, unset, center);
+          margin-right: 10px;
+          color: variables.$quaternary-grey;
+        }
+
+        .icon-arrow {
+          margin-right: unset;
+          margin-left: 15px;
+          padding-top: 5px;
+          cursor: pointer;
+        }
+
+        &-credits {
+          @include mixins.flex(row, center, center);
+          @include mixins.text(
+            variables.$primary,
+            maps.fontSize("small"),
+            maps.fontWeight("bold"),
+            center,
+            unset
+          );
+          border-radius: 5px;
+          background-color: variables.$primary-pink;
+          padding: 5px 10px;
+          margin-left: 20px;
+        }
+      }
+    }
+
+    .item-calendar {
+      border-bottom: 2px solid variables.$secondary-grey;
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+.content {
+  @extend .sidebar;
+  @include mixins.flex(column, space-between, center);
+  background-color: variables.$primary;
+  border-right: none;
+  margin-left: 15.1%;
+  width: 85%;
+
+  .content-table {
+    border-collapse: collapse;
+    background-color: variables.$primary;
+    border-radius: 10px;
+    width: 100%;
+
+    &-head {
+      @include mixins.text(
+        variables.$tertiary-grey,
+        maps.fontSize("small"),
+        maps.fontWeight("bold"),
+        left,
+        uppercase
+      );
+      padding: 15px;
+
+      &-icon {
+        margin-left: 10px;
+        cursor: pointer;
+      }
+    }
+
+    &-data {
+      @include mixins.border(1px, solid, variables.$secondary-grey, none, 0);
+      border-left: none;
+      border-right: none;
+      @include mixins.text(
+        variables.$quaternary-grey,
+        maps.fontSize("small"),
+        maps.fontWeight("semi_bold"),
+        left,
+        unset
+      );
+      padding: 4.5px 15px;
+
+      &-approved {
+        @include mixins.flex(row, center, center);
+        background-color: variables.$primary-blue;
+        border-radius: 5px;
+        color: variables.$primary;
+        padding: 5px 0;
+      }
+
+      &-rejected {
+        @extend .content-table-data-approved;
+        background-color: variables.$primary-purple;
+      }
+    }
+  }
+}
+
+.table-wrapper {
+  @include mixins.flex(row, center, center);
+  @include mixins.border(1px, solid, variables.$secondary-grey, none, 10px);
+  background-color: variables.$primary-grey;
+  padding: 30px;
+  margin: 15px 0;
+  width: 80%;
+}
+
+.recharts-responsive-container {
+  @extend .table-wrapper;
+  height: 80% !important;
+  width: 80% !important;
+}

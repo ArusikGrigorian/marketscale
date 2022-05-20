@@ -1,0 +1,31 @@
+//flex layout
+
+@mixin flex($direction, $justify, $align) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+// text decoration
+
+@mixin text($color, $size, $weight, $align, $transform) {
+  color: $color;
+  font-size: $size;
+  font-weight: $weight;
+  text-align: $align;
+  text-transform: $transform;
+}
+
+//border decoration
+
+@mixin border($width: 0, $style: unset, $color: unset, $outline: none, $radius: 0) {
+  border-width: $width;
+  border-style: $style;
+  border-color: $color;
+  outline: $outline;
+
+  @if $radius != 0 {
+    border-radius: $radius;
+  }
+}
